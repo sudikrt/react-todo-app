@@ -2,6 +2,7 @@
   "name": "react-task-tracker",
   "version": "0.1.0",
   "private": true,
+  "homepage" : "http://sudikrt.github.io/react-todo-app",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
@@ -19,7 +20,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "json-server --watch db.json --port 5000"
+    "server": "json-server --watch db.json --port 5000",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -40,6 +43,7 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^3.1.0",
     "husky": "^4.3.8"
   }
 }
