@@ -84,7 +84,7 @@ const App = () => {
   }
 
   return (
-    <Router>
+    <Router basename="/">
       <div className="container">
           <Header onAdd={() => setShowAddTask (!showAddTask)} showAdd={showAddTask}/>
           <Route path='/' exact render={(props) => (
