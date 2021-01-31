@@ -7,6 +7,8 @@ import  {HashRouter as Router, Route} from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 const App = () => {
+  const API_ENDPOINT = 'https://my-json-server.typicode.com/sudikrt/db-demo-repo/tasks';
+  //'http://localhost:5000/tasks'
   const [showAddTask, setShowAddTask] = useState (false);
 
   const [tasks, setTasks] = useState ([]);
@@ -21,20 +23,25 @@ const App = () => {
 
   //Fetch Tasks 
   const fetchTasks = async () => {
-      const res = await fetch ('http://localhost:5000/tasks');
+      const res = await fetch (API_ENDPOINT, {
+        headers : {
+          'Access-Control-Allow-Origin': '*',
+          'Accept': 'application/json;odata.metadata=full',
+        }
+      });
       const data = await res.json ();
       return data;
   }
   //Fetch Task
   const fetchTask = async (id) => {
-    const res = await fetch (`http://localhost:5000/tasks/${id}`);
+    const res = await fetch (`${API_ENDPOINT}/${id}`);
     const data = await res.json ();
     return data;
 }
 
   //Add Task
   const addTask = async (task) => {
-      const res = await fetch  ('http://localhost:5000/tasks',
+      const res = await fetch  (API_ENDPOINT,
         {
           method : 'POST',
           headers : {
@@ -56,7 +63,7 @@ const App = () => {
 
   //delete 
   const deleteTask =  async (id) => {
-      await fetch (`http://localhost:5000/tasks/${id}`, {
+      await fetch (`${API_ENDPOINT}/${id}`, {
         method : 'DELETE'
       })
       setTasks (tasks.filter (task => task.id !== id));
@@ -69,7 +76,7 @@ const App = () => {
         ...taskToToggle, reminder : !taskToToggle.reminder
       };
 
-      const res = await fetch (`http://localhost:5000/tasks/${id}`,
+      const res = await fetch (`${API_ENDPOINT}/${id}`,
         {
           method : 'PUT',
           headers : {
