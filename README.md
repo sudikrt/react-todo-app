@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+It contains the practive samples from [React JS Crash Course](https://www.youtube.com/watch?v=w7ejDZ8SWv8) thanks to  [Traversy Media](https://www.youtube.com/channel/UC29ju8bIPH5as8OGnQzwJyA)
+
 ## Available Scripts
 
 In the project directory, you can run:
