@@ -3,7 +3,7 @@ import Footer from './components/Footer';
 import About from './components/About';
 import Tasks from './components/Tasks';
 import AddTask from './components/AddTask';
-import  {BrowserRouter as Router, Route} from 'react-router-dom';
+import  {HashRouter as Router, Route} from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 const App = () => {
