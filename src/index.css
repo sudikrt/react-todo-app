@@ -90,6 +90,14 @@ body {
   padding: 3px 7px;
   font-size: 17px;
 }
+.form-control textarea {
+  width: 100%;
+  height: 100px;
+  margin: 5px;
+  padding: 3px 7px;
+  font-size: 17px;
+}
+
 
 .form-control-check {
   display: flex;
@@ -109,4 +117,53 @@ body {
 footer {
   margin-top: 30px;
   text-align: center;
+}
+
+.wrapper {
+    display : grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows : minmax(100px, auto)
+}
+.wrapper > div {
+    background : #eee;
+}
+.heading-wrapper {
+    text-align: center;
+}
+.form-wrapper  {
+    margin : 2em;
+    padding : 2em;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
+    transition: 0.3s;
+    border-radius: 4px;
+}
+.contact-us-img-wrapper {
+    padding : 2em;
+    text-align: center;
+}
+
+@media only screen and (max-width: 30em) {
+    .wrapper {
+        grid-template-columns: 1fr;
+    }
+    #root {
+      width : 100%;
+    }
+    .heading-wrapper > img{
+        object-fit:cover;
+        max-width:100%;
+        display : block;
+    }
+    .contact-us-img-wrapper {
+        padding-bottom: 1em;
+    }
+    .contact-us-img-wrapper > img {
+        height: 150px;
+    }
+    .form-wrapper {
+        margin-top: 1em;
+    }
+}
+@-ms-viewport{
+  width: device-width;
 }

@@ -5,6 +5,7 @@ import Tasks from './components/Tasks';
 import AddTask from './components/AddTask';
 import  {HashRouter as Router, Route} from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import ContactUs from './components/ContactUs';
 
 const App = () => {
   const API_ENDPOINT = 'https://my-json-server.typicode.com/sudikrt/db-demo-repo/tasks';
@@ -92,19 +93,41 @@ const App = () => {
 
   return (
     <Router basename="/">
-      <div className="container">
-          <Header onAdd={() => setShowAddTask (!showAddTask)} showAdd={showAddTask}/>
+      {
+      <div>
           <Route path='/' exact render={(props) => (
-            <>
+            <div className="container">
+              <Header onAdd={() => setShowAddTask (!showAddTask)} showAdd={showAddTask}/>
               { showAddTask && <AddTask onAdd={addTask}/> }
               {
                 tasks.length > 0 ? <Tasks tasks={tasks} onToggle={toggleRemainder} onDelete={deleteTask}/> : 'No Tasks to Show'
               }
-            </>
+              <Footer/>
+            </div>
           )}/>
-          <Route path="/about" component={About}/>
-          <Footer/>
+          <Route path="/about" render={(props) => (
+            <div className="container">
+              <Header onAdd={() => setShowAddTask (!showAddTask)} showAdd={showAddTask}/>
+              <Route path="/about" component={About}/>
+              <Footer/>
+            </div>
+          )}/>
+          {/* <div className="container">
+              <Header onAdd={() => setShowAddTask (!showAddTask)} showAdd={showAddTask}/>
+              <Route path='/' exact render={(props) => (
+                <>
+                  { showAddTask && <AddTask onAdd={addTask}/> }
+                  {
+                    tasks.length > 0 ? <Tasks tasks={tasks} onToggle={toggleRemainder} onDelete={deleteTask}/> : 'No Tasks to Show'
+                  }
+                </>
+              )}/>
+              <Route path="/about" component={About}/>
+              <Footer/>
+          </div> */}
+          <Route path="/contact-us" component={ContactUs}/>
       </div>
+      }
     </Router>
   );
 }
