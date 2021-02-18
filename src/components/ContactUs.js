@@ -71,15 +71,22 @@ const ContactUs = ({ initialValues, validate }) => {
               Object.values(values).length && // all fields were touched
             Object.values(formValidation.touched).every(t => t === true) // every touched field is true
         ) {
-            alert(JSON.stringify(values, null, 2));
+            //alert(JSON.stringify(values, null, 2));
             const  headers =  {
-                'Access-Control-Allow-Origin': '*',
-                'Accept': 'application/json;odata.metadata=full',
+                'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
               }
-            axios.post(`https://api.altreality.co/dev/contact-us`, values, {headers})
+            axios.post(`https://api.altreality.co/dev/contact-us`, values, {headers} )
             .then(res => {
                 console.log(res);
                 console.log(res.data);
+                if (res.status === 200 ) {
+                    // Object.keys({...values}).forEach (key => {
+                    //     setValues({...values, [key]: undefined});
+                    // })
+                    //.map(([key, value]) => [key, undefined]);
+                    alert ('We got your contact info. Will contact you soon');
+
+                }
             })
         }
     }
