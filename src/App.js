@@ -91,6 +91,63 @@ const App = () => {
       setTasks (tasks.map ( task => task.id === id ? {...task, reminder : data.reminder} : task))
   }
 
+
+  //name validation
+  const nameValidation = (fieldName, fieldValue) => {
+      if (fieldValue.trim () === '') {
+          return `${fieldName} is required`;
+      }
+      if (/[^a-zA-Z -]/.test (fieldValue)) {
+          return 'Invalid characters';
+      }
+      if (fieldValue.trim().length < 3) {
+          return `${fieldName} needs to be at least three characters`;
+      }
+      return null;
+  }
+  //email validation
+  const emailValidation = email => {
+      if (/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email,)) {
+        return null;
+      }
+      if (email.trim() === '') {
+        return 'Email is required';
+      }
+      return 'Please enter a valid email';
+  }
+  //message validation
+  const messageValidation = (fieldName, fieldValue) => {
+      if (fieldValue.trim () === '') {
+          return `${fieldName} is required`;
+      }
+      if (fieldValue.trim().length < 30) {
+          return `${fieldName} needs to be at least 30 characters`;
+      }
+      return null;
+  }
+  const phoneValidation = phone => {
+      if (/^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/.test (phone)) {
+          return null
+      }
+      if (phone.trim () === '') {
+          return 'Phone no. is required';  
+      }
+      return 'Please enter a valid Phone number';
+  }
+  const validate = {
+      name: name => nameValidation('Name', name),
+      email: emailValidation,
+      phone : phoneValidation,
+      message : message => messageValidation ('Message', message )
+  };
+  const initialValues = {
+      name: '',
+      email: '',
+      phone : '',
+      message : ''
+  };
+  
+
   return (
     <Router basename="/">
       {
@@ -125,7 +182,9 @@ const App = () => {
               <Route path="/about" component={About}/>
               <Footer/>
           </div> */}
-          <Route path="/contact-us" component={ContactUs}/>
+          <Route path="/contact-us" render={() => (
+              <ContactUs validate={validate} initialValues={initialValues}/>
+          )}/>
       </div>
       }
     </Router>
